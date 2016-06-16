@@ -50,10 +50,10 @@ function process(baseDir) {
     		run("Import UFMF", "choose=" + baseDir + expDir + fileName + ".ufmf");
 
     		//generate array of frames that need to be saved
-    		fps = 30;
-    		stimDuration = 30;
+    		fps = 20;
+    		stimDuration = 50;
     		pauseDuration = 10;
-    		shiftF = 5;
+    		shiftF = 1;
     
 	    	frame1 = startFrame + 1;
     		frame2 = startFrame + fps * stimDuration - shiftF;
@@ -62,8 +62,10 @@ function process(baseDir) {
     		frame5 = frame4 + fps * (stimDuration+pauseDuration) - shiftF;
     		frame6 = frame5 + fps * (stimDuration+pauseDuration) - shiftF;
     		frame7 = frame6 + fps * (stimDuration+pauseDuration) - shiftF;
+    		frame8 = frame7 + fps * (stimDuration+pauseDuration) - shiftF;
+    		frame9 = frame8 + fps * (stimDuration+pauseDuration) - shiftF;
     
-    		framesToSelect = newArray(frame1,frame2,frame3,frame4,frame5,frame6,frame7);
+    		framesToSelect = newArray(frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9);
     
     		for (i=0; i<framesToSelect.length; i++) {
     			currFrame = framesToSelect[i];

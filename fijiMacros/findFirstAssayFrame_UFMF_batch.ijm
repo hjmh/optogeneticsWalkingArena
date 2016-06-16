@@ -33,7 +33,7 @@ function process(dirIn) {
                run("Import UFMF", "choose=" + fnIn + ".ufmf");
 	           print("opened " + fileName);
 
-	           makeRectangle(135, 0, 25, 25); //marks left upper indicator LED (previous 125, 0, 47, 40)  (2, 0, 25, 25)
+	           makeRectangle(10, 1, 25, 25); //marks left upper indicator LED (previous 135, 0, 25, 25)  (2, 0, 25, 25)
 	    
 	           selectWindow(fileName + ".ufmf");
 	           run("Plot Z-axis Profile");
