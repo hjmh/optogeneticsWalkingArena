@@ -5,6 +5,13 @@
 // expDir = "5xCsChr/5xCsChr_x_HC-Gal4_female/luLEDTraces/"
 
 //----------------------------
+
+
+// *** NEED TO ADJUST THIS TO EXPERIMENT ***
+fps = 20;
+stimDuration = 30;
+pauseDuration = 10;
+    		
 setBatchMode(true);
 source = getDirectory("Choose Source Directory");
 process(source);
@@ -49,10 +56,8 @@ function process(baseDir) {
     		//load movie
     		run("Import UFMF", "choose=" + baseDir + expDir + fileName + ".ufmf");
 
-    		//generate array of frames that need to be saved
-    		fps = 20;
-    		stimDuration = 50;
-    		pauseDuration = 10;
+    		//generate array of frames that need to be saved  
+    		
     		shiftF = 1;
     
 	    	frame1 = startFrame + 1;
@@ -62,10 +67,8 @@ function process(baseDir) {
     		frame5 = frame4 + fps * (stimDuration+pauseDuration) - shiftF;
     		frame6 = frame5 + fps * (stimDuration+pauseDuration) - shiftF;
     		frame7 = frame6 + fps * (stimDuration+pauseDuration) - shiftF;
-    		frame8 = frame7 + fps * (stimDuration+pauseDuration) - shiftF;
-    		frame9 = frame8 + fps * (stimDuration+pauseDuration) - shiftF;
     
-    		framesToSelect = newArray(frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9);
+    		framesToSelect = newArray(frame1,frame2,frame3,frame4,frame5,frame6,frame7);
     
     		for (i=0; i<framesToSelect.length; i++) {
     			currFrame = framesToSelect[i];
