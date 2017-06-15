@@ -1,5 +1,6 @@
 __author__ = 'hannah'
 
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import matplotlib.colors as colors
@@ -13,7 +14,7 @@ def myAxisTheme(myax):
     myax.spines['right'].set_visible(False)
 
 def plotSparseMatrix(figsize,aspectRatio,matrixToPlot,titleString):
-    fig = plt.figure(figsize = figsize)
+    fig = plt.figure(figsize=figsize)
     fig.set_canvas(plt.gcf().canvas)
     sns.set_style('ticks')
     ax = fig.add_subplot(111)
@@ -28,7 +29,7 @@ def plotSparseMatrix(figsize,aspectRatio,matrixToPlot,titleString):
     return fig
 
 
-def plotPosInRange(ax, frameRange, xPos, yPos, angle, flyID, currCmap):
+def plotPosInRange(ax, frameRange, xPos, yPos, angle, flyID, currCmap, alphaVal, arrowScale):
     cNorm  = colors.Normalize(vmin=-0.5*len(frameRange), vmax=1*len(frameRange))
     scalarMap = plt.cm.ScalarMappable(norm=cNorm, cmap=currCmap)
     colCounter = 0
@@ -40,7 +41,7 @@ def plotPosInRange(ax, frameRange, xPos, yPos, angle, flyID, currCmap):
 
         for fly in flyID[frame]:
             plotBodyAngle(ax, xPos[frame][flyID[frame] == fly], yPos[frame][flyID[frame] == fly],
-                          angle[frame][flyID[frame] == fly], currCol, 0.5, 20)
+                          angle[frame][flyID[frame] == fly], currCol, alphaVal, arrowScale)
 
     ax.set_aspect('equal')
 
@@ -53,8 +54,9 @@ def plotPosInRange(ax, frameRange, xPos, yPos, angle, flyID, currCmap):
 
 def plotBodyAngle(ax, x, y, angle, markerColor, alphaVal, arrowScale):
     try:
-        newArrow = patches.Arrow(x, y,np.cos(angle).squeeze()*arrowScale, np.sin(angle).squeeze()*arrowScale, width=2,
+        newArrow = patches.Arrow(x, y, np.cos(angle).squeeze()*arrowScale, np.sin(angle).squeeze()*arrowScale, width=2,
                                 edgecolor=markerColor, facecolor=markerColor, alpha=alphaVal)
         ax.add_patch(newArrow)
-    except:
-        couldNotPrint = True
+    except Exception as e:
+        print(e)
+        #pass
