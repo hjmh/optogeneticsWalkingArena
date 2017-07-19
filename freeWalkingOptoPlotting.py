@@ -59,4 +59,20 @@ def plotBodyAngle(ax, x, y, angle, markerColor, alphaVal, arrowScale):
         ax.add_patch(newArrow)
     except Exception as e:
         print(e)
-        #pass
+
+def plotPosAndAngleInRange_singleFly_colorStim(ax, frameRange, stimCode, xPos, yPos, angle, flyID, fly, currCmap):
+    cNorm  = colors.Normalize(vmin=-0.5*len(frameRange), vmax=1*len(frameRange))
+    scalarMap = plt.cm.ScalarMappable(norm=cNorm, cmap=currCmap)
+    for ind, frame in enumerate(frameRange):
+        currCol=scalarMap.to_rgba(len(frameRange)-ind)
+        if(stimCode[ind]):
+            # we are within stimulation period
+            currCol = 'red'
+
+        ax.plot(xPos[frame][flyID[frame] == fly], yPos[frame][flyID[frame] == fly],
+                marker='.', markersize=6, linestyle='none', alpha=0.5, color=currCol)
+
+        plotBodyAngle(ax, xPos[frame][flyID[frame] == fly], yPos[frame][flyID[frame] == fly],
+                      angle[frame][flyID[frame] == fly], currCol, 0.5, 20)
+
+    ax.set_aspect('equal')
