@@ -13,7 +13,8 @@ import sys
 from scipy.io import loadmat
 
 #import custom written functions
-sys.path.insert(0, '/Users/hannah/Dropbox/code/plottingFunctions')
+
+sys.path.insert(0, '/Users/hannah/Documents/code/')
 from ctraxFlyTracePlots import *
 from ctraxQuadrantPlots import *
 from protocolParameter import *
